@@ -1,4 +1,4 @@
-// BOJ_5585번_거스름돈
+//BOJ_5585번_거스름돈
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -6,18 +6,16 @@ import java.io.InputStreamReader;
 public class Main {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-		int[] money = { 500, 100, 50, 10, 5, 1 };
 		int N = Integer.parseInt(br.readLine());
-		
+		int[] money = { 500, 100, 50, 10, 5, 1 };
 		N = 1000 - N;
-		int cnt = 0, idx = 0;
-		while (idx < money.length) {
-			cnt += (N / money[idx]);
-			N %= money[idx];
-			idx++;
+		int ans = 0;
+		for (int i = 0; i < money.length; i++) {
+			ans += (N / money[i]);
+			N = N - (N / money[i]) * money[i];
+			if (N == 0)
+				break;
 		}
-
-		System.out.println(cnt);
+		System.out.println(ans);
 	}
 }
